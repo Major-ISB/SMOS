@@ -12,7 +12,7 @@ bprint:
     lodsb
     test al, al
     
-    jz   .cp_done
+    jz   .bp_done
     mov  ah, 0x0E
     int  0x10
     
