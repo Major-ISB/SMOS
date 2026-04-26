@@ -62,8 +62,8 @@ boot_print_string:
 
 BOOT_DRIVE: db 0
 
-boot_msg: db "Bootloader: Loaded", 0
-boot_msg_err: db "Disk Error!", 0
+boot_msg: db 'Bootloader loaded', 0
+boot_msg_err: db 'Disk error', 0
 
 times 510-($-$$) db 0
 dw 0xAA55                 ; Boot signature
