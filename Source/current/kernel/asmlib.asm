@@ -17,7 +17,7 @@ bprint:
     int  0x10
     
     jmp  .loop
-.cp_done:
+.bp_done:
     pop  esi
     pop  ebp
     ret
