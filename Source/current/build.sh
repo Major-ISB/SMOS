@@ -17,8 +17,8 @@ echo ""
 printf "${NC}[1]: Compiling source files..."
 nasm -f bin ./boot/boot.asm -o ./build/boot.bin
 nasm -f elf32 ./kernel/kernel_entry.asm -I kernel/ -o ./build/kernel_entry.o
-gcc -m16 -ffreestanding -c ./kernel/kernel.c -o ./build/kernel.o
-ld -m elf_i386 -o ./build/kernel.bin -Ttext 0x0 --oformat binary ./build/kernel_entry.o ./build/kernel.o
+gcc -m16 -ffreestanding -fno-pie -fno-stack-protector -nostdlib -c ./kernel/kernel.c -o ./build/kernel.o
+ld -m elf_i386 -o ./build/kernel.bin -Ttext 0x10000 --oformat binary ./build/kernel_entry.o ./build/kernel.o
 printf " ${RED}Done!\n"
 
 printf "${NC}[2]: Creating floppy image..."
