@@ -1,7 +1,8 @@
-extern void cprint(const char *str);
+void bprint(const char *str);
 
-void kmain() {
-    //cprint("Kernel: Entered kmain!");
+void kmain(void)
+{
+    bprint("\nKernel: Entered kmain!");
 
     while (1) { };
 }
