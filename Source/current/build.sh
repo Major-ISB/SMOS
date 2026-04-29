@@ -16,9 +16,17 @@ echo ""
 
 printf "${NC}[1]: Compiling source files..."
 nasm -f bin ./boot/boot.asm -o ./build/boot.bin
+
+# Kernel entry
 nasm -f elf32 ./kernel/kernel_entry.asm -I kernel/ -o ./build/kernel_entry.o
-gcc -m16 -ffreestanding -fno-pie -fno-stack-protector -nostdlib -c ./kernel/kernel.c -o ./build/kernel.o
-ld -m elf_i386 -o ./build/kernel.bin -Ttext 0x10000 --oformat binary ./build/kernel_entry.o ./build/kernel.o
+
+# C in 32-bit
+gcc -m32 -ffreestanding -fno-pie -fno-stack-protector -nostdlib -c ./kernel/kernel.c -o ./build/kernel.o
+
+# Linker
+ld -m elf_i386 -T link.ld -o ./build/kernel.bin \
+    ./build/kernel_entry.o ./build/kernel.o
+    
 printf " ${RED}Done!\n"
 
 printf "${NC}[2]: Creating floppy image..."
@@ -30,7 +38,7 @@ printf "${NC}[3]: Launching qemu..."
 
 if command -v qemu-system-x86_64 &> /dev/null; then
     printf " ${RED}Launched!\n"
-    qemu-system-x86_64 -drive format=raw,file=./build/smos-x86.img
+    qemu-system-x86_64 -kernel ./build/kernel.bin
 else
     printf " ${RED}/!\ Cannot find qemu, aborting...!\n"
 fi
