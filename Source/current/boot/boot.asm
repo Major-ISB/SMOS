@@ -31,8 +31,15 @@ jc disk_error
 jmp skip_disk_error
 
 disk_error:
+    push ax
     mov si, boot_msg_err
     call boot_print_string
+    pop ax
+
+    mov al, ah
+    add al, '0'
+    mov ah, 0x0E
+    int 0x10
     
     jmp $
     
