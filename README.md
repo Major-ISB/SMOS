@@ -1,11 +1,47 @@
-# SMOS
-Saint Marc Operating System.
+# SMOS (Saint Marc Operating System)
 
-# About this project
-SMOS (Saint Marc Operating System) is a prototype project, aiming to create an operating system from scratch. This is done in the scope of the Cumputer Science class in the Saint Marc high school for an educationnal use. The OS will be written mainly in Assembly (x86) and C so that this ensures the necessary low-level access (CPU, Memory, and much more).
+> [!IMPORTANT]
+> This is a prototype project developed for educational purposes within the Computer Science department of Saint Marc High School.
 
-# Who ?
-Just a crazy student who is curius to see how low-level porgramming looks like.
+---
 
-# Credits
-Basics (bootloader and kernel fundamentals) : https://github.com/Jothini231, https://github.com/chipsetx/Simple-Kernel-in-C-and-Assembly
+## Project Overview
+SMOS is an experimental operating system built from scratch to explore the fundamentals of low-level computing. By interfacing directly with the hardware, this project implements core OS concepts without relying on existing kernels.
+
+### Core Technologies
+| Component | Language | Purpose |
+| :--- | :--- | :--- |
+| **Bootloader** | Assembly (x86) | Initializing CPU registers and loading the kernel |
+| **Kernel Logic** | C | Memory management, I/O operations, and system logic |
+| **Hardware Access** | Mixed | Direct manipulation of CPU, RAM, and VGA buffers |
+
+---
+
+## Features & Goals
+- [x] Custom Bootloader implementation
+- [x] Basic Kernel initialization
+- [ ] Interrupt Descriptor Table (IDT) setup
+- [ ] Global Descriptor Table (GDT) configuration
+- [ ] Basic VGA Driver for text output
+
+---
+
+## Behind the Code
+> [!NOTE]
+> This project is maintained by a student driven by curiosity about how software communicates with hardware at the most granular level.
+
+---
+
+## Credits & Acknowledgments
+The development of SMOS is supported by the following open-source resources:
+
+* **Bootloader & Kernel Foundations**: 
+  * [Jothini231](https://github.com/Jothini231)
+  * [Simple-Kernel-in-C-and-Assembly](https://github.com/chipsetx/Simple-Kernel-in-C-and-Assembly)
+
+---
+
+## Repository Metadata
+* **Target Architecture**: x86 (32-bit)
+* **License**: MIT (or specify your license here)
+* **Environment**: Developed for QEMU/Bochs emulation
