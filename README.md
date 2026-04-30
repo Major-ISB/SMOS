@@ -8,4 +8,4 @@ SMOS (Saint Marc Operating System) is a prototype project, aiming to create an o
 Just a crazy student who is curius to see how low-level porgramming looks like.
 
 # Credits
-Basics (bootloader and kernel fundamentals) : https://github.com/Jothini231
+Basics (bootloader and kernel fundamentals) : https://github.com/Jothini231, https://github.com/chipsetx/Simple-Kernel-in-C-and-Assembly
