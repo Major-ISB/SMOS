@@ -13,24 +13,18 @@ SMOS is an experimental operating system built from scratch to explore the funda
 | :--- | :--- | :--- |
 | **Bootloader** | Assembly (x86) | Initializing CPU registers and loading the kernel |
 | **Kernel Logic** | C | Memory management, I/O operations, and system logic |
-| **Hardware Access** | Mixed | Direct manipulation of CPU, RAM, and VGA buffers |
 
 ---
 
 ## Features & Goals
 - [x] Custom Bootloader implementation
 - [x] Basic Kernel initialization
-- [ ] Interrupt Descriptor Table (IDT) setup
-- [ ] Global Descriptor Table (GDT) configuration
-- [ ] Basic VGA Driver for text output
 
 ---
 
 ## Behind the Code
 > [!NOTE]
 > This project is maintained by a student driven by curiosity about how software communicates with hardware at the most granular level.
-
----
 
 ## Credits & Acknowledgments
 The development of SMOS is supported by the following open-source resources:
@@ -43,5 +37,5 @@ The development of SMOS is supported by the following open-source resources:
 
 ## Repository Metadata
 * **Target Architecture**: x86 (32-bit)
-* **License**: MIT (or specify your license here)
-* **Environment**: Developed for QEMU/Bochs emulation
+* **License**: GPL v2.0
+* **Environment**: Developed for QEMU
