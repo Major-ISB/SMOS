@@ -13,8 +13,8 @@ SMOS is an experimental operating system built from scratch to explore the funda
 | **Kernel Logic** | C | Memory management, I/O operations, and system logic |
 
 ## Features & Goals
-- [x] Custom Bootloader implementation
-- [x] Basic Kernel initialization
+- [x] Bootloader implementation
+- [x] Basic Kernel
 
 ## Who ?
 > [!NOTE]
