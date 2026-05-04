@@ -21,11 +21,14 @@ void strcmp(const char* a, const char* b)
 
     if (strlen(a) == strlen(b))
     {
-        while(*a && *b)
+        while(*a)
         {
             if (*a != *b)
                 egals = 1; // not egals
                 break;
+
+            *a++;
+            *b++;
         }
     }
     else
