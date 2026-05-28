@@ -5,6 +5,7 @@
 
 ## Project Overview
 SMOS is an experimental operating system built from scratch to explore the fundamentals of low-level computing.
+Please note down that this project may contain not reliable code as I am far from being a qualified person in that field.
 
 ## Credits
 The development of SMOS is supported by the following open-source resources:
