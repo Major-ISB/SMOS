@@ -1,14 +1,14 @@
 # SMOS (Saint Marc Operating System)
 
 > [!IMPORTANT]
-> This is a prototype project developed for educational purposes within the Computer Science department of Saint Marc High School.
+> This is a prototype project developed for educational purposes.
 
 ## Project Overview
 SMOS is an experimental operating system built from scratch to explore the fundamentals of low-level computing.
 Please note down that this project may contain not reliable code as I am far from being a qualified person in that field.
 
 ## Credits
-The development of SMOS is supported by the following open-source resources:
+Useful resources which really helped me:
 
 * **Bootloader & Kernel Foundations**: 
   * [Jothini231](https://github.com/Jothini231)
