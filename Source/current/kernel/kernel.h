@@ -30,4 +30,7 @@ void brline();
 void handle_keyboard();
 void bootlog(const char *str, const enum EBootLogStatus status);
 
+void print_cmdindicator();
+void change_cursorshape(unsigned int start, unsigned int end);
+
 #endif
