@@ -1,6 +1,8 @@
 #!/bin/bash
 
+#sudo rm -R ./build
 mkdir -p ./build
+
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m'
@@ -22,10 +24,11 @@ nasm -f elf32 ./kernel/kernel_entry.asm -I kernel/ -o ./build/kernel_entry.o
 
 # C in 32-bit
 gcc -m32 -ffreestanding -fno-pie -fno-stack-protector -nostdlib -c ./kernel/kernel.c -o ./build/kernel.o
+gcc -m32 -ffreestanding -fno-pie -fno-stack-protector -nostdlib -c ./kernel/libs/strlib/strlib.c -o ./build/strlib.o
 
 # Linker
 ld -m elf_i386 -T link.ld -o ./build/kernel.bin \
-    ./build/kernel_entry.o ./build/kernel.o
+    ./build/kernel_entry.o ./build/kernel.o ./build/strlib.o
     
 printf " ${RED}Done!\n"
 
