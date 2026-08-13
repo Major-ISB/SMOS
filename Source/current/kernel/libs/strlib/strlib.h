@@ -2,4 +2,4 @@
 int strlen(const char* str);
 
 // String comparison
-void strcmp(const char* a, const char* b);
+int strcmp(const char* a, const char* b);
