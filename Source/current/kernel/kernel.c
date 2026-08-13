@@ -1,9 +1,10 @@
 #include "kernel.h"
+#include "libs/strlib/strlib.h"
 
 char *vidmem = (char *) VGA_ADDRESS;
 
-const char* smos_indicator = "user@machine";
-const char buffer[64];
+const char* smos_indicator = "user@smos";
+char buffer[64];
 int buffer_index = 0;
 
 /* Voids definitions */
@@ -48,6 +49,17 @@ unsigned int getCursorPos()
     
     unsigned int position = (high << 8) | low;
     return position;
+}
+
+void change_cursorshape(unsigned int start, unsigned int end)
+{
+    // Cursor start
+    outb(0x3D4, 0x0A);
+    outb(0x3D5, start);
+
+    // Cursor end
+    outb(0x3D4, 0x0B);
+    outb(0x3D5, end);
 }
 
 // print a single character
@@ -108,9 +120,16 @@ void handle_keyboard()
     if (scancode == 0x1C) // check if enter key is pressed
     {
         buffer_index = 0;
+
+        for (int i = 0; i < 64; i++)
+        {
+            printchar(buffer[i], raw+1, i, WHITE_TXT);
+            buffer[i] = ' ';
+        }
+
         brline();
-        printf(smos_indicator, GREEN_TXT);
-        printf(": ", WHITE_TXT);
+        brline();
+        print_cmdindicator();
         return;
     }
     else if (scancode == 0x0E) // backspace logic
@@ -121,15 +140,16 @@ void handle_keyboard()
             setCursorPos(raw, column);
             printchar(' ', raw, column, WHITE_TXT);
             buffer_index--;
+            buffer[buffer_index] = ' ';
         }
         return;
     }
     
     const char keymap[128] = {
-        0,  27, '1','2','3','4','5','6','7','8','9','0','-','=', '\b',
-        '\t','a','z','e','r','t','y','u','i','o','p','[',']','\n', 0,
-        'q','s','d','f','g','h','j','k','l','m','\'','`',  0,'\\',
-        'w','x','c','v','b','n',',',';','.','/',  0,'*', 0,' ',
+        0,   27, '&','e','\"','\'','(', '-', 'e','_', 'c', 'a', ')', '=', '\b',
+        '\t','a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '^', '$', '\n', 0,
+        'q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'u', '`',  0,  '*',
+        'w', 'x', 'c', 'v', 'b', 'n', ',', ';', ':', '!',  0,  '*',  0,  ' ',
     };
     
     unsigned char c = keymap[scancode];
@@ -137,10 +157,17 @@ void handle_keyboard()
     if (scancode < 0x80 && c && buffer_index < 63)
     {
         printchar(c, raw, column, WHITE_TXT);
+        buffer[buffer_index] = c;
         column++;
         setCursorPos(raw, column);
         buffer_index++;
     }
+}
+
+void print_cmdindicator()
+{
+    printf(smos_indicator, GREEN_TXT);
+    printf(": ", WHITE_TXT);
 }
 
 // boot log logic
@@ -193,12 +220,13 @@ void kmain()
 {
     clear_screen();
     setCursorPos(0, 0);
+    change_cursorshape(0, 15);
     
     bootlog("Kernel loading", Success);
     bootlog("Running SMOS on version v0.01", Info);
     bootlog("32-bits protected mode", Info);
 
-    printf(smos_indicator, GREEN_TXT);
+    print_cmdindicator();
 
     while (1)
     {
