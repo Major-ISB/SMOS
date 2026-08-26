@@ -15,6 +15,6 @@ Useful resources which really helped me:
   * [Simple-Kernel-in-C-and-Assembly](https://github.com/chipsetx/Simple-Kernel-in-C-and-Assembly)
 
 ## More information
-* **Target Architecture**: x86 (32-bit)
+* **Target Architecture**: x86 (32-bit for elf32-i386 systems)
 * **License**: GPL v2.0
 * **Environment**: Developed for QEMU
